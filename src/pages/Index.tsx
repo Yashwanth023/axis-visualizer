@@ -71,7 +71,7 @@ const Index = () => {
       {
         id: '3',
         name: 'Revenue Analysis',
-        chartType: '3d',
+        chartType: 'area',
         createdAt: new Date().toISOString(),
         data: [
           { id: '1', x: 10, y: 15, label: 'Q1', color: '#FF6B6B' },
