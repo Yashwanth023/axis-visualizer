@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, BarChart, Bar, ScatterChart, Scatter, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { TrendingUp, BarChart3, Scatter3D, Activity } from 'lucide-react';
+import { TrendingUp, BarChart3, Box, Activity } from 'lucide-react';
 
 interface DataPoint {
   id: string;
@@ -29,8 +28,9 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({ dataset }) => {
     switch (dataset.chartType) {
       case 'line': return <TrendingUp className="h-5 w-5" />;
       case 'bar': return <BarChart3 className="h-5 w-5" />;
-      case 'scatter': return <Scatter3D className="h-5 w-5" />;
+      case 'scatter': return <Box className="h-5 w-5" />;
       case 'area': return <Activity className="h-5 w-5" />;
+      case '3d': return <Box className="h-5 w-5" />;
       default: return <TrendingUp className="h-5 w-5" />;
     }
   };

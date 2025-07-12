@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChartContainer } from '@/components/charts/ChartContainer';
 import { DataTable } from '@/components/data/DataTable';
 import { ThreeDChart } from '@/components/charts/ThreeDChart';
-import { Plus, BarChart3, LineChart, PieChart, Scatter3D, Database, Trash2 } from 'lucide-react';
+import { Plus, BarChart3, LineChart, PieChart, Box, Database, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface DataPoint {
@@ -304,7 +304,7 @@ const Index = () => {
                     Chart View
                   </TabsTrigger>
                   <TabsTrigger value="3d" className="data-[state=active]:bg-purple-500/30">
-                    <Scatter3D className="h-4 w-4 mr-2" />
+                    <Box className="h-4 w-4 mr-2" />
                     3D View
                   </TabsTrigger>
                   <TabsTrigger value="data" className="data-[state=active]:bg-purple-500/30">
