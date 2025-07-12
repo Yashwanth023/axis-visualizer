@@ -74,7 +74,7 @@ A stunning full-stack data visualization application built with React, TypeScrip
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone 
    cd data-visualization-studio
    ```
 
@@ -235,25 +235,6 @@ The application comes with pre-loaded sample datasets:
 - **Responsive Design**: Charts adapt to different screen sizes
 - **Color Customization**: Each data point can have custom colors
 
-## 🚀 Deployment
-
-### Build for Production
-```bash
-npm run build
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 🙏 Acknowledgments
 
 - **Recharts** - For the amazing charting library
@@ -263,4 +244,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ using React, TypeScript, and MongoDB**
