@@ -164,6 +164,19 @@ export const ChartContainer: React.FC<ChartContainerProps> = ({ dataset }) => {
           </AreaChart>
         );
 
+      case '3d':
+        return (
+          <div className="h-full flex items-center justify-center text-white/80">
+            <div className="text-center space-y-4">
+              <Box className="h-16 w-16 mx-auto text-purple-400" />
+              <div>
+                <h3 className="text-lg font-semibold">3D Visualization Available</h3>
+                <p className="text-sm text-slate-400">Switch to the 3D View tab to see the interactive 3D chart</p>
+              </div>
+            </div>
+          </div>
+        );
+
       default:
         return <div className="text-white">Chart type not supported</div>;
     }

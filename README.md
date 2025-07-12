@@ -16,9 +16,9 @@ A stunning full-stack data visualization application built with React, TypeScrip
 - **Export/Import**: JSON data export and import functionality
 - **Interactive Controls**: Mouse-driven chart interactions and animations
 
-### Backend Features (Simulated with Frontend State Management)
+### Backend Features
 - **CRUD API Structure**: Full Create, Read, Update, Delete operations
-- **Data Persistence**: Local storage simulation of database operations
+- **Data Persistence**: MongoDB database for reliable data storage
 - **Multiple Dataset Support**: Manage multiple chart datasets simultaneously
 - **Data Validation**: Input validation and error handling
 - **RESTful API Design**: Following REST principles for data operations
@@ -34,8 +34,8 @@ A stunning full-stack data visualization application built with React, TypeScrip
 - **Shadcn/ui** - Beautiful UI component library
 - **Lucide React** - Modern icon library
 
-### Backend (Database Integration)
-- **MongoDB** - NoSQL database for flexible data storage (as per assignment requirements)
+### Backend & Database
+- **MongoDB** - NoSQL database for flexible data storage
 - **RESTful APIs** - Standard REST endpoints for data operations
 - **Data Models** - Structured schemas for datasets and data points
 - **CRUD Operations** - Complete database interaction layer
@@ -68,6 +68,7 @@ A stunning full-stack data visualization application built with React, TypeScrip
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn package manager
+- MongoDB (local installation)
 
 ### Installation
 
@@ -241,11 +242,6 @@ The application comes with pre-loaded sample datasets:
 npm run build
 ```
 
-### Deploy to Various Platforms
-- **Vercel**: Connect your GitHub repository
-- **Netlify**: Drag and drop the `dist` folder
-- **Heroku**: Use the Node.js buildpack
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -264,10 +260,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Shadcn/ui** - For the beautiful UI components
 - **Tailwind CSS** - For the utility-first CSS framework
 - **MongoDB** - For the robust database solution
-
-## 📞 Support
-
-For support, email your.email@example.com or create an issue in the GitHub repository.
 
 ---
 
