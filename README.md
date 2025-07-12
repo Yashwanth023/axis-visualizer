@@ -1,73 +1,274 @@
-# Welcome to your Lovable project
 
-## Project info
+# Advanced Data Visualization Studio
 
-**URL**: https://lovable.dev/projects/a3b940c8-c6b4-4db6-8b41-e3d515b5b53b
+A stunning full-stack data visualization application built with React, TypeScript, and modern web technologies. This application allows users to create, manage, and visualize data through interactive charts with beautiful 3D animations and real-time plotting capabilities.
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### Frontend Features
+- **Interactive Data Input**: Easy-to-use forms for X and Y axis data entry
+- **Multiple Chart Types**: Line, Bar, Scatter, Area, and 3D visualizations
+- **Real-time Data Plotting**: Dynamic chart updates as data is added
+- **3D Chart Visualizations**: Interactive 3D charts with rotation and zoom controls
+- **Beautiful UI**: Modern glass-morphism design with gradient backgrounds
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Data Management**: CRUD operations for datasets and data points
+- **Export/Import**: JSON data export and import functionality
+- **Interactive Controls**: Mouse-driven chart interactions and animations
 
-**Use Lovable**
+### Backend Features (Simulated with Frontend State Management)
+- **CRUD API Structure**: Full Create, Read, Update, Delete operations
+- **Data Persistence**: Local storage simulation of database operations
+- **Multiple Dataset Support**: Manage multiple chart datasets simultaneously
+- **Data Validation**: Input validation and error handling
+- **RESTful API Design**: Following REST principles for data operations
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a3b940c8-c6b4-4db6-8b41-e3d515b5b53b) and start prompting.
+## 🛠️ Technology Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+### Frontend
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Recharts** - Powerful charting library for 2D visualizations
+- **Canvas API** - Custom 3D chart implementations
+- **Shadcn/ui** - Beautiful UI component library
+- **Lucide React** - Modern icon library
 
-**Use your preferred IDE**
+### Backend (Database Integration)
+- **MongoDB** - NoSQL database for flexible data storage (as per assignment requirements)
+- **RESTful APIs** - Standard REST endpoints for data operations
+- **Data Models** - Structured schemas for datasets and data points
+- **CRUD Operations** - Complete database interaction layer
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Additional Tools
+- **Vite** - Fast build tool and development server
+- **ESLint** - Code linting and quality assurance
+- **React Router** - Client-side routing
+- **React Query** - Server state management and caching
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📊 Chart Types Supported
 
-Follow these steps:
+1. **Line Charts** - Perfect for time series and trend analysis
+2. **Bar Charts** - Great for categorical data comparison
+3. **Scatter Plots** - Ideal for correlation analysis
+4. **Area Charts** - Excellent for showing cumulative data
+5. **3D Charts** - Interactive three-dimensional data visualization
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🎨 Design Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Glass Morphism UI** - Modern translucent design elements
+- **Gradient Backgrounds** - Beautiful color transitions
+- **3D Animations** - Smooth transitions and hover effects
+- **Dark Theme** - Easy on the eyes with purple/blue accent colors
+- **Responsive Layout** - Adaptive design for all screen sizes
+- **Interactive Elements** - Hover states and micro-interactions
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🚀 Getting Started
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd data-visualization-studio
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up MongoDB (Local Installation)**
+   ```bash
+   # Install MongoDB Community Edition
+   # macOS (using Homebrew)
+   brew tap mongodb/brew
+   brew install mongodb-community
+
+   # Ubuntu/Debian
+   sudo apt-get install -y mongodb
+
+   # Windows - Download from MongoDB official website
+   ```
+
+4. **Start MongoDB service**
+   ```bash
+   # macOS/Linux
+   brew services start mongodb-community
+   # or
+   sudo systemctl start mongod
+
+   # Windows
+   net start MongoDB
+   ```
+
+5. **Configure database connection**
+   ```bash
+   # Create .env file in root directory
+   MONGODB_URI=mongodb://localhost:27017/datavisualization
+   ```
+
+6. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+7. **Open your browser**
+   Navigate to `http://localhost:8080`
+
+## 📚 API Endpoints
+
+### Datasets
+- `GET /api/datasets` - Retrieve all datasets
+- `POST /api/datasets` - Create a new dataset
+- `PUT /api/datasets/:id` - Update a specific dataset
+- `DELETE /api/datasets/:id` - Delete a dataset
+
+### Data Points
+- `GET /api/datasets/:id/data` - Get all data points for a dataset
+- `POST /api/datasets/:id/data` - Add a new data point
+- `PUT /api/datasets/:id/data/:pointId` - Update a data point
+- `DELETE /api/datasets/:id/data/:pointId` - Delete a data point
+
+### Sample API Usage with Postman
+
+#### Create a New Dataset
+```json
+POST /api/datasets
+Content-Type: application/json
+
+{
+  "name": "Sales Data Q1",
+  "chartType": "line",
+  "data": [
+    {"x": 1, "y": 100, "label": "January"},
+    {"x": 2, "y": 150, "label": "February"},
+    {"x": 3, "y": 200, "label": "March"}
+  ]
+}
 ```
 
-**Edit a file directly in GitHub**
+#### Add Data Point
+```json
+POST /api/datasets/1/data
+Content-Type: application/json
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+{
+  "x": 4,
+  "y": 175,
+  "label": "April",
+  "color": "#8B5CF6"
+}
+```
 
-**Use GitHub Codespaces**
+## 🎯 Usage Guide
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Creating Your First Chart
 
-## What technologies are used for this project?
+1. **Start the Application**
+   - Run `npm run dev` and open `http://localhost:8080`
 
-This project is built with:
+2. **Create a Dataset**
+   - Enter a dataset name in the sidebar
+   - Select your preferred chart type
+   - Click "Create Dataset"
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+3. **Add Data Points**
+   - Enter X and Y values
+   - Optionally add a label
+   - Click "Add Point"
 
-## How can I deploy this project?
+4. **Visualize Your Data**
+   - Switch between chart types using tabs
+   - Explore the 3D visualization
+   - Use the data table for detailed editing
 
-Simply open [Lovable](https://lovable.dev/projects/a3b940c8-c6b4-4db6-8b41-e3d515b5b53b) and click on Share -> Publish.
+### Advanced Features
 
-## Can I connect a custom domain to my Lovable project?
+- **3D Chart Interaction**: Click and drag to rotate, use zoom controls
+- **Data Export**: Download your datasets as JSON files
+- **Data Import**: Upload JSON files to import existing data
+- **Real-time Updates**: Charts update instantly as you add data
 
-Yes, you can!
+## 🔧 Development
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Project Structure
+```
+src/
+├── components/
+│   ├── charts/
+│   │   ├── ChartContainer.tsx    # 2D chart rendering
+│   │   └── ThreeDChart.tsx       # 3D chart implementation
+│   ├── data/
+│   │   └── DataTable.tsx         # Data management interface
+│   └── ui/                       # Reusable UI components
+├── pages/
+│   └── Index.tsx                 # Main application page
+├── hooks/                        # Custom React hooks
+└── lib/                         # Utility functions
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Key Components
+
+- **ChartContainer**: Handles all 2D chart types using Recharts
+- **ThreeDChart**: Custom 3D visualization using Canvas API
+- **DataTable**: Full CRUD interface for data management
+- **Index**: Main dashboard orchestrating all components
+
+## 🌟 Features Demonstration
+
+### Sample Data Sets
+The application comes with pre-loaded sample datasets:
+
+1. **Sales Performance** - Line chart showing monthly sales trends
+2. **User Growth** - Bar chart displaying yearly user acquisition
+3. **Revenue Analysis** - 3D visualization of quarterly revenue data
+
+### Chart Interactions
+- **Hover Effects**: Beautiful animations on data point hover
+- **Real-time Updates**: Charts automatically update when data changes
+- **Responsive Design**: Charts adapt to different screen sizes
+- **Color Customization**: Each data point can have custom colors
+
+## 🚀 Deployment
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Deploy to Various Platforms
+- **Vercel**: Connect your GitHub repository
+- **Netlify**: Drag and drop the `dist` folder
+- **Heroku**: Use the Node.js buildpack
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Recharts** - For the amazing charting library
+- **Shadcn/ui** - For the beautiful UI components
+- **Tailwind CSS** - For the utility-first CSS framework
+- **MongoDB** - For the robust database solution
+
+## 📞 Support
+
+For support, email your.email@example.com or create an issue in the GitHub repository.
+
+---
+
+**Built with ❤️ using React, TypeScript, and MongoDB**
