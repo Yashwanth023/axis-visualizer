@@ -14,7 +14,71 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      data_points: {
+        Row: {
+          color: string | null
+          created_at: string
+          dataset_id: string
+          id: string
+          label: string | null
+          x_value: number
+          y_value: number
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          dataset_id: string
+          id?: string
+          label?: string | null
+          x_value: number
+          y_value: number
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          dataset_id?: string
+          id?: string
+          label?: string | null
+          x_value?: number
+          y_value?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "data_points_dataset_id_fkey"
+            columns: ["dataset_id"]
+            isOneToOne: false
+            referencedRelation: "datasets"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      datasets: {
+        Row: {
+          chart_type: string
+          created_at: string
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          chart_type: string
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          chart_type?: string
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
