@@ -237,30 +237,6 @@ apikey: {supabase_anon_key}
 Content-Type: application/json
 ```
 
-## 🚀 Deployment
-
-### Supabase (Backend)
-- Your Supabase project is already live and accessible
-- Database URL remains consistent across all environments
-- No additional backend deployment needed
-
-### Frontend Deployment Options
-
-#### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Deploy automatically - no configuration needed
-3. Your Supabase connection will work immediately
-
-#### Netlify
-1. Build command: `npm run build`
-2. Publish directory: `dist`
-3. No environment variables needed
-
-#### Other Platforms
-- The app is a standard Vite React application
-- Build with `npm run build`
-- Serve the `dist` folder as static files
-
 ## 🔒 Security Features
 
 - **Row Level Security**: Database-level access control
@@ -270,13 +246,3 @@ Content-Type: application/json
 - **CORS Protection**: Proper cross-origin resource sharing
 - **Rate Limiting**: Built-in Supabase rate limiting
 
-## 🙏 Acknowledgments
-
-- **Supabase** - For the amazing backend-as-a-service platform
-- **Recharts** - For the powerful charting library
-- **Shadcn/ui** - For the beautiful UI components
-- **Tailwind CSS** - For the utility-first CSS framework
-
----
-
-**Note**: This application uses Supabase for backend functionality. All data is stored securely in the cloud with automatic backups and scaling.
