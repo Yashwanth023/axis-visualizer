@@ -1,11 +1,12 @@
 
 # Advanced Data Visualization Studio
 
-A stunning full-stack data visualization application built with React, TypeScript, and modern web technologies. This application allows users to create, manage, and visualize data through interactive charts with beautiful 3D animations and real-time plotting capabilities.
+A stunning full-stack data visualization application built with React, TypeScript, Supabase, and modern web technologies. This application allows users to create, manage, and visualize data through interactive charts with beautiful 3D animations, real-time plotting capabilities, and secure user authentication.
 
 ## 🚀 Features
 
 ### Frontend Features
+- **User Authentication**: Secure sign-up/sign-in with email and password
 - **Interactive Data Input**: Easy-to-use forms for X and Y axis data entry
 - **Multiple Chart Types**: Line, Bar, Scatter, Area, and 3D visualizations
 - **Real-time Data Plotting**: Dynamic chart updates as data is added
@@ -15,13 +16,18 @@ A stunning full-stack data visualization application built with React, TypeScrip
 - **Data Management**: CRUD operations for datasets and data points
 - **Export/Import**: JSON data export and import functionality
 - **Interactive Controls**: Mouse-driven chart interactions and animations
+- **Personal Data**: Each user only sees and manages their own datasets
 
-### Backend Features
-- **CRUD API Structure**: Full Create, Read, Update, Delete operations
-- **Data Persistence**: MongoDB database for reliable data storage
+### Backend Features (Supabase)
+- **User Authentication**: Secure authentication with Supabase Auth
+- **Real-time Database**: PostgreSQL database with real-time subscriptions
+- **Row Level Security**: Users can only access their own data
+- **CRUD API Operations**: Full Create, Read, Update, Delete operations
+- **Data Persistence**: Reliable cloud database storage
 - **Multiple Dataset Support**: Manage multiple chart datasets simultaneously
 - **Data Validation**: Input validation and error handling
 - **RESTful API Design**: Following REST principles for data operations
+- **Automatic Timestamps**: Created and updated timestamps for all records
 
 ## 🛠️ Technology Stack
 
@@ -33,18 +39,21 @@ A stunning full-stack data visualization application built with React, TypeScrip
 - **Canvas API** - Custom 3D chart implementations
 - **Shadcn/ui** - Beautiful UI component library
 - **Lucide React** - Modern icon library
+- **React Query** - Server state management and caching
 
 ### Backend & Database
-- **MongoDB** - NoSQL database for flexible data storage
-- **RESTful APIs** - Standard REST endpoints for data operations
-- **Data Models** - Structured schemas for datasets and data points
-- **CRUD Operations** - Complete database interaction layer
+- **Supabase** - Backend-as-a-Service platform
+- **PostgreSQL** - Robust relational database
+- **Row Level Security** - Database-level security policies
+- **Real-time subscriptions** - Live data updates
+- **Supabase Auth** - Authentication and user management
+- **RESTful APIs** - Auto-generated REST endpoints
+- **Database triggers** - Automatic timestamp updates
 
 ### Additional Tools
 - **Vite** - Fast build tool and development server
 - **ESLint** - Code linting and quality assurance
 - **React Router** - Client-side routing
-- **React Query** - Server state management and caching
 
 ## 📊 Chart Types Supported
 
@@ -68,13 +77,13 @@ A stunning full-stack data visualization application built with React, TypeScrip
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn package manager
-- MongoDB (local installation)
+- A Supabase account (free tier available)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone 
+   git clone <your-repo-url>
    cd data-visualization-studio
    ```
 
@@ -83,97 +92,69 @@ A stunning full-stack data visualization application built with React, TypeScrip
    npm install
    ```
 
-3. **Set up MongoDB (Local Installation)**
-   ```bash
-   # Install MongoDB Community Edition
-   # macOS (using Homebrew)
-   brew tap mongodb/brew
-   brew install mongodb-community
+3. **Set up Supabase**
+   - Create a new project at [supabase.com](https://supabase.com)
+   - The database schema is automatically set up via migrations
+   - Authentication is pre-configured for email/password
 
-   # Ubuntu/Debian
-   sudo apt-get install -y mongodb
+4. **Configure Supabase connection**
+   - The Supabase client is pre-configured in `src/integrations/supabase/client.ts`
+   - No additional configuration needed
 
-   # Windows - Download from MongoDB official website
-   ```
-
-4. **Start MongoDB service**
-   ```bash
-   # macOS/Linux
-   brew services start mongodb-community
-   # or
-   sudo systemctl start mongod
-
-   # Windows
-   net start MongoDB
-   ```
-
-5. **Configure database connection**
-   ```bash
-   # Create .env file in root directory
-   MONGODB_URI=mongodb://localhost:27017/datavisualization
-   ```
-
-6. **Start the development server**
+5. **Start the development server**
    ```bash
    npm run dev
    ```
 
-7. **Open your browser**
+6. **Open your browser**
    Navigate to `http://localhost:8080`
 
-## 📚 API Endpoints
+## 🔐 Authentication
 
-### Datasets
-- `GET /api/datasets` - Retrieve all datasets
-- `POST /api/datasets` - Create a new dataset
-- `PUT /api/datasets/:id` - Update a specific dataset
-- `DELETE /api/datasets/:id` - Delete a dataset
+The application includes a complete authentication system:
+- **Sign Up**: New users can create accounts with email/password
+- **Sign In**: Existing users can log in securely
+- **Session Management**: Automatic session handling and persistence
+- **Protected Routes**: Data access requires authentication
+- **User Isolation**: Each user only sees their own data
 
-### Data Points
-- `GET /api/datasets/:id/data` - Get all data points for a dataset
-- `POST /api/datasets/:id/data` - Add a new data point
-- `PUT /api/datasets/:id/data/:pointId` - Update a data point
-- `DELETE /api/datasets/:id/data/:pointId` - Delete a data point
+## 📚 Database Schema
 
-### Sample API Usage with Postman
+### Tables
 
-#### Create a New Dataset
-```json
-POST /api/datasets
-Content-Type: application/json
+#### datasets
+- `id` (UUID, Primary Key)
+- `user_id` (UUID, Foreign Key to auth.users)
+- `name` (Text, Required)
+- `chart_type` (Text, Required) - One of: 'line', 'bar', 'scatter', 'area', '3d'
+- `created_at` (Timestamp)
+- `updated_at` (Timestamp)
 
-{
-  "name": "Sales Data Q1",
-  "chartType": "line",
-  "data": [
-    {"x": 1, "y": 100, "label": "January"},
-    {"x": 2, "y": 150, "label": "February"},
-    {"x": 3, "y": 200, "label": "March"}
-  ]
-}
-```
+#### data_points
+- `id` (UUID, Primary Key)
+- `dataset_id` (UUID, Foreign Key to datasets)
+- `x_value` (Float, Required)
+- `y_value` (Float, Required)
+- `label` (Text, Optional)
+- `color` (Text, Optional)
+- `created_at` (Timestamp)
 
-#### Add Data Point
-```json
-POST /api/datasets/1/data
-Content-Type: application/json
-
-{
-  "x": 4,
-  "y": 175,
-  "label": "April",
-  "color": "#8B5CF6"
-}
-```
+### Security
+- **Row Level Security (RLS)** enabled on all tables
+- Users can only access their own datasets and data points
+- Automatic foreign key constraints ensure data integrity
 
 ## 🎯 Usage Guide
 
-### Creating Your First Chart
+### Getting Started
 
-1. **Start the Application**
-   - Run `npm run dev` and open `http://localhost:8080`
+1. **Create an Account**
+   - Click "Sign In" in the top right
+   - Switch to "Sign Up" tab
+   - Enter your email and password
+   - Confirm your email (if required)
 
-2. **Create a Dataset**
+2. **Create Your First Dataset**
    - Enter a dataset name in the sidebar
    - Select your preferred chart type
    - Click "Create Dataset"
@@ -194,6 +175,7 @@ Content-Type: application/json
 - **Data Export**: Download your datasets as JSON files
 - **Data Import**: Upload JSON files to import existing data
 - **Real-time Updates**: Charts update instantly as you add data
+- **Personal Workspace**: All data is private to your account
 
 ## 🔧 Development
 
@@ -201,46 +183,100 @@ Content-Type: application/json
 ```
 src/
 ├── components/
+│   ├── auth/
+│   │   └── AuthButton.tsx        # Authentication UI
 │   ├── charts/
 │   │   ├── ChartContainer.tsx    # 2D chart rendering
 │   │   └── ThreeDChart.tsx       # 3D chart implementation
 │   ├── data/
 │   │   └── DataTable.tsx         # Data management interface
 │   └── ui/                       # Reusable UI components
+├── hooks/
+│   ├── useAuth.tsx               # Authentication state management
+│   └── useSupabaseData.tsx       # Data fetching and mutations
+├── integrations/
+│   └── supabase/
+│       ├── client.ts             # Supabase client configuration
+│       └── types.ts              # Database type definitions
 ├── pages/
 │   └── Index.tsx                 # Main application page
-├── hooks/                        # Custom React hooks
-└── lib/                         # Utility functions
+└── lib/                          # Utility functions
 ```
 
 ### Key Components
 
-- **ChartContainer**: Handles all 2D chart types using Recharts
+- **AuthButton**: Handles user authentication UI and logic
+- **ChartContainer**: Renders all 2D chart types using Recharts
 - **ThreeDChart**: Custom 3D visualization using Canvas API
 - **DataTable**: Full CRUD interface for data management
-- **Index**: Main dashboard orchestrating all components
+- **useAuth**: Custom hook for authentication state
+- **useSupabaseData**: Custom hook for database operations
 
-## 🌟 Features Demonstration
+## 🌟 Backend API
 
-### Sample Data Sets
-The application comes with pre-loaded sample datasets:
+### Authentication Endpoints (Supabase Auth)
+- `POST /auth/v1/signup` - Create new user account
+- `POST /auth/v1/token?grant_type=password` - Sign in user
+- `POST /auth/v1/logout` - Sign out user
+- `GET /auth/v1/user` - Get current user info
 
-1. **Sales Performance** - Line chart showing monthly sales trends
-2. **User Growth** - Bar chart displaying yearly user acquisition
-3. **Revenue Analysis** - 3D visualization of quarterly revenue data
+### Database Operations (Auto-generated REST API)
+- `GET /rest/v1/datasets` - Retrieve user's datasets
+- `POST /rest/v1/datasets` - Create a new dataset
+- `PATCH /rest/v1/datasets?id=eq.{id}` - Update a dataset
+- `DELETE /rest/v1/datasets?id=eq.{id}` - Delete a dataset
+- `GET /rest/v1/data_points` - Retrieve data points
+- `POST /rest/v1/data_points` - Add a new data point
+- `PATCH /rest/v1/data_points?id=eq.{id}` - Update a data point
+- `DELETE /rest/v1/data_points?id=eq.{id}` - Delete a data point
 
-### Chart Interactions
-- **Hover Effects**: Beautiful animations on data point hover
-- **Real-time Updates**: Charts automatically update when data changes
-- **Responsive Design**: Charts adapt to different screen sizes
-- **Color Customization**: Each data point can have custom colors
+### API Headers Required
+```
+Authorization: Bearer {supabase_anon_key}
+apikey: {supabase_anon_key}
+Content-Type: application/json
+```
+
+## 🚀 Deployment
+
+### Supabase (Backend)
+- Your Supabase project is already live and accessible
+- Database URL remains consistent across all environments
+- No additional backend deployment needed
+
+### Frontend Deployment Options
+
+#### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Deploy automatically - no configuration needed
+3. Your Supabase connection will work immediately
+
+#### Netlify
+1. Build command: `npm run build`
+2. Publish directory: `dist`
+3. No environment variables needed
+
+#### Other Platforms
+- The app is a standard Vite React application
+- Build with `npm run build`
+- Serve the `dist` folder as static files
+
+## 🔒 Security Features
+
+- **Row Level Security**: Database-level access control
+- **JWT Authentication**: Secure token-based authentication
+- **HTTPS**: All communication encrypted
+- **Input Validation**: Client and server-side validation
+- **CORS Protection**: Proper cross-origin resource sharing
+- **Rate Limiting**: Built-in Supabase rate limiting
 
 ## 🙏 Acknowledgments
 
-- **Recharts** - For the amazing charting library
+- **Supabase** - For the amazing backend-as-a-service platform
+- **Recharts** - For the powerful charting library
 - **Shadcn/ui** - For the beautiful UI components
 - **Tailwind CSS** - For the utility-first CSS framework
-- **MongoDB** - For the robust database solution
 
 ---
 
+**Note**: This application uses Supabase for backend functionality. All data is stored securely in the cloud with automatic backups and scaling.
